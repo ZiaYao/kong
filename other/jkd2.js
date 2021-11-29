@@ -1,7 +1,20 @@
 /*
+下载地址
+http://a.app.qq.com/o/simple.jsp?pkgname=com.xiangzi.jukandian&ckey=CK1416436838701
+邀请码必填得金币 24493019
+[rewrite_local]
+https://www.xiaodouzhuan.cn/jkd/user/userlive.action url script-request-body http://47.101.146.160/scripts/jkd.js
+
+hostname = *.xiaodouzhuan.cn
+##点任务获取数据##
+===========ql===========
+拉取
+ql raw http://47.101.146.160/scripts/jkd.js
 变量
 export jkdhd='{"openid": "替换的CK"}' 同CK 后面不需要!iOS!5.6.5
+
 export jkdck='{"Cookie":"xz_jkd_appkey=替换的CK"}'
+
 多账号用@隔开
 */
 // [task_local]
