@@ -52,12 +52,12 @@ var timestamp = Math.round(new Date().getTime()/1000).toString();
           jkdhd = jkdhdArr[i];
           jkdck = jkdckArr[i]
           $.index = i + 1;
-
+        
           console.log(`\n开始【聚看点${$.index}】`)
 
 await qx()
 
-
+    
 
   }
 }
@@ -108,7 +108,7 @@ $.log(jkdhd)
 $.log(jkdck)
 
    $.msg($.name,"",'聚看点'+`${status}` +'数据获取成功！')
-
+ 
 }
 }
 async function qx(){
@@ -117,7 +117,7 @@ async function qx(){
   await getMoneyTree()
   await qxstimulateAdvAccount(17)
 for(let i=0;i<5;i++){
-
+  
   await $.wait(30000)
   await qxread()}
   await qxsign()
@@ -135,7 +135,7 @@ await qlinfo()
 await getMoneyTree()
 await qlstimulateAdvAccount(17)  
 for(let i=0;i<5;i++){
-
+  
   await $.wait(30000)
   await qlread()}
 await qlsign()
@@ -156,7 +156,7 @@ qxhd = jkdhd.match(/jsondata=(.+)/)[1]
 'Content-Type': 'application/x-www-form-urlencoded',
 'User-Agent': 'JuKanDian/5.6.5 (iPhone; iOS 14.3; Scale/3.00)',
 }
-
+        
     }
    $.post(nm,async(error, response, data) =>{
     try{
@@ -164,11 +164,11 @@ qxhd = jkdhd.match(/jsondata=(.+)/)[1]
         if(logs)$.log(data)
         if(result.ret == "ok")
         $.log(`usercode: ${result.userinfo.usercode}\n${result.userinfo.infoMeSumCashItem.value} ${result.userinfo.infoMeSumCashItem.title}\n${result.userinfo.infoMeCurCashItem.value} ${result.userinfo.infoMeCurCashItem.title}\n${result.userinfo.infoMeGoldItem.value} ${result.userinfo.infoMeGoldItem.title}`)
-
+    
        if(result.code != 0)
-
+          
           $.log(result.msg)
-
+          
         }catch(e) {
           $.logErr(e, response);
       } finally {
@@ -190,7 +190,7 @@ qlhd = JSON.parse(jkdhd)
 'Content-Type': 'application/x-www-form-urlencoded',
 'User-Agent': 'JuKanDian/5.6.5 (iPhone; iOS 14.3; Scale/3.00)',
 }
-
+        
     }
    $.post(nm,async(error, response, data) =>{
     try{
@@ -198,11 +198,11 @@ qlhd = JSON.parse(jkdhd)
         if(logs)$.log(data)
         if(result.ret == "ok")
         $.log(`usercode: ${result.userinfo.usercode}\n${result.userinfo.infoMeSumCashItem.value} ${result.userinfo.infoMeSumCashItem.title}\n${result.userinfo.infoMeCurCashItem.value} ${result.userinfo.infoMeCurCashItem.title}\n${result.userinfo.infoMeGoldItem.value} ${result.userinfo.infoMeGoldItem.title}`)
-
+    
        if(result.code != 0)
-
+          
           $.log(result.msg)
-
+          
         }catch(e) {
           $.logErr(e, response);
       } finally {
@@ -211,7 +211,7 @@ qlhd = JSON.parse(jkdhd)
     })
    })
   }
-
+  
   async function getMoneyTree(){
  return new Promise((resolve) => {
 
@@ -220,7 +220,7 @@ qlhd = JSON.parse(jkdhd)
      url: `https://www.xiaodouzhuan.cn/jkd/task/getMoneyTreeProfit.action`,
      body: 'box_type=1',
      headers:JSON.parse(jkdck)
-
+        
     }
    $.post(nm,async(error, response, data) =>{
       // $.log(JSON.stringify(nm))
@@ -232,7 +232,7 @@ $.log("can get coin: "+data)
           if(data>0){
               await getTaskBox()
           }
-
+          
         }catch(e) {
           $.logErr(e, response);
       } finally {
@@ -241,7 +241,7 @@ $.log("can get coin: "+data)
     })
    })
   }
-
+  
   async function getTaskBox(){
  return new Promise((resolve) => {
 
@@ -250,7 +250,7 @@ $.log("can get coin: "+data)
      url: `https://www.xiaodouzhuan.cn/jkd/task/getTaskBoxProfit.action`,
      body: 'box_type=1',
      headers:JSON.parse(jkdck)
-
+        
     }
    $.post(nm,async(error, response, data) =>{
       // $.log(JSON.stringify(nm))
@@ -262,10 +262,10 @@ $.log("can get coin: "+data)
     if(result.ret=="ok"){
         $.log("get coin: "+result.profit)
     }
-
-
-
-
+       
+          
+          
+          
         }catch(e) {
           $.logErr(e, response);
       } finally {
@@ -276,7 +276,7 @@ $.log("can get coin: "+data)
   }
 
 
-
+  
   async function qlstimulateAdvAccount(position){
  return new Promise((resolve) => {
 qlhd = JSON.parse(jkdhd)
@@ -286,7 +286,7 @@ qlhd = JSON.parse(jkdhd)
      body: `jsondata={  "openid" : "${qlhd.openid}",  "channel" : "iOS",  "os" : "iOS",  "appversioncode" : "565",  "time" : "1630331719",  "psign" : "92dea068b6c271161be05ed358b59932",  "position" : ${position},  "apptoken" : "xzwltoken070704",  "appid" : "xzwl",  "appversion" : "5.6.5"}`,
      //14 17
      headers:JSON.parse(jkdck)
-
+        
     }
    $.post(nm,async(error, response, data) =>{
 
@@ -301,7 +301,7 @@ await qllogin()
 }
     }
 
-
+          
         }catch(e) {
           $.logErr(e, response);
       } finally {
@@ -310,7 +310,7 @@ await qllogin()
     })
    })
   }
-
+  
   async function qxstimulateAdvAccount(position){
  return new Promise((resolve) => {
 qxhd = jkdhd.match(/jsondata=(.+)/)[1]
@@ -321,7 +321,7 @@ qxhd = JSON.parse(qxhd)
      url: `https://www.xiaodouzhuan.cn/jkd/account/stimulateAdvAccount.action`,
      body: `jsondata={  "openid" : "${qxhd.openid}",  "channel" : "iOS",  "os" : "iOS",  "appversioncode" : "565",  "time" : "1630331719",  "psign" : "${qxhd.psign}",  "position" : ${position},  "apptoken" : "${qxhd.apptoken}",  "appid" : "xzwl",  "appversion" : "5.6.5"}`,
      headers:JSON.parse(jkdck)
-
+        
     }
    $.post(nm,async(error, response, data) =>{
 
@@ -336,7 +336,7 @@ await qxlogin()
 }
     }
 
-
+          
         }catch(e) {
           $.logErr(e, response);
       } finally {
@@ -345,8 +345,8 @@ await qxlogin()
     })
    })
   }
-
-
+  
+  
   async function qxread(){
  return new Promise((resolve) => {
 qxhd = jkdhd.match(/jsondata=(.+)/)[1]
@@ -358,7 +358,7 @@ qxhd = JSON.parse(qxhd)
      body: `jsondata={  "appid" : "xzwl",  "read_weal" : 0,  "paytype" : 1,  "securitykey" : "",  "channel" : "iOS",  "psign" : "${qxhd.psign}",  "appversioncode" : "565",  "time" : "1630332532",  "apptoken" : "${qxhd.apptoken}",  "appversion" : "5.6.5",  "openid" : "${qxhd.openid}",  "os" : "iOS",  "artid" : 812907${Math.round(Math.random()*9)}${s},  "accountType" : "0",  "readmodel" : "1"}`,
 //{  "appid" : "xzwl",  "read_weal" : 0,  "paytype" : 2,  "securitykey" : "",  "channel" : "iOS",  "psign" : "92dea068b6c271161be05ed358b59932",  "appversioncode" : "565",  "time" : "1630335383",  "apptoken" : "xzwltoken070704",  "appversion" : "5.6.5",  "openid" : "0189b3c44c814491ade2028dfb6e1c2d",  "os" : "iOS",  "artid" : 812923981,  "accountType" : "0",  "readmodel" : "1"}
      headers:JSON.parse(jkdck)
-
+        
     }
    $.post(nm,async(error, response, data) =>{
 
@@ -370,7 +370,7 @@ qxhd = JSON.parse(qxhd)
         $.log("get coin: "+result.profit)
     }
 
-
+          
         }catch(e) {
           $.logErr(e, response);
       } finally {
@@ -379,7 +379,7 @@ qxhd = JSON.parse(qxhd)
     })
    })
   }
-
+  
   async function qlread(){
  return new Promise((resolve) => {
 
@@ -389,7 +389,7 @@ qlhd = JSON.parse(jkdhd)
      body: `jsondata={  "appid" : "xzwl",  "read_weal" : 0,  "paytype" : 1,  "securitykey" : "",  "channel" : "iOS",  "psign" : "92dea068b6c271161be05ed358b59932",  "appversioncode" : "565",  "time" : "1630332532",  "apptoken" : "xzwltoken070704",  "appversion" : "5.6.5",  "openid" : "${qlhd.openid}",  "os" : "iOS",  "artid" : 812907${Math.round(Math.random()*9)}${s},  "accountType" : "0",  "readmodel" : "1"}`,
 
      headers:JSON.parse(jkdck)
-
+        
     }
    $.post(nm,async(error, response, data) =>{
 
@@ -401,7 +401,7 @@ qlhd = JSON.parse(jkdhd)
         $.log("get coin: "+result.profit)
     }
 
-
+          
         }catch(e) {
           $.logErr(e, response);
       } finally {
@@ -410,7 +410,7 @@ qlhd = JSON.parse(jkdhd)
     })
    })
   }
-
+  
   async function qlsign(){
  return new Promise((resolve) => {
 
@@ -420,7 +420,7 @@ qlhd = JSON.parse(jkdhd)
      //body: `jsondata={  "appid" : "xzwl",  "read_weal" : 0,  "paytype" : 1,  "securitykey" : "",  "channel" : "iOS",  "psign" : "92dea068b6c271161be05ed358b59932",  "appversioncode" : "565",  "time" : "1630332532",  "apptoken" : "xzwltoken070704",  "appversion" : "5.6.5",  "openid" : "${qlhd.openid}",  "os" : "iOS",  "artid" : 812907${Math.round(Math.random()*9)}${s},  "accountType" : "0",  "readmodel" : "1"}`,
 
      headers:JSON.parse(jkdck)
-
+        
     }
    $.get(nm,async(error, response, data) =>{
 
@@ -432,7 +432,7 @@ qlhd = JSON.parse(jkdhd)
         $.log("get coin: "+result.datas.profitDesc)
     }
 
-
+          
         }catch(e) {
           $.logErr(e, response);
       } finally {
@@ -441,7 +441,7 @@ qlhd = JSON.parse(jkdhd)
     })
    })
   }
-
+  
   async function qxsign(){
  return new Promise((resolve) => {
 qxhd = jkdhd.match(/jsondata=(.+)/)[1]
@@ -453,7 +453,7 @@ qxhd = JSON.parse(qxhd)
      //body: `jsondata={  "appid" : "xzwl",  "read_weal" : 0,  "paytype" : 1,  "securitykey" : "",  "channel" : "iOS",  "psign" : "${qxhd.psign}",  "appversioncode" : "565",  "time" : "1630332532",  "apptoken" : "${qxhd.apptoken}",  "appversion" : "5.6.5",  "openid" : "${qxhd.openid}",  "os" : "iOS",  "artid" : 812907${Math.round(Math.random()*9)}${s},  "accountType" : "0",  "readmodel" : "1"}`,
 
      headers:JSON.parse(jkdck)
-
+        
     }
    $.get(nm,async(error, response, data) =>{
 
@@ -465,7 +465,7 @@ qxhd = JSON.parse(qxhd)
         $.log("get coin: "+result.datas.profitDesc)
     }
 
-
+          
         }catch(e) {
           $.logErr(e, response);
       } finally {
@@ -474,7 +474,7 @@ qxhd = JSON.parse(qxhd)
     })
    })
   }
-
+  
   async function qxvideo(artid){
  return new Promise((resolve) => {
 qxhd = jkdhd.match(/jsondata=(.+)/)[1]
@@ -486,7 +486,7 @@ qxhd = JSON.parse(qxhd)
      body: `jsondata={  "appid" : "xzwl",  "read_weal" : 0,  "paytype" : 2,  "securitykey" : "",  "channel" : "iOS",  "psign" : "${qxhd.psign}",  "appversioncode" : "565",  "time" : "1630332532",  "apptoken" : "${qxhd.apptoken}",  "appversion" : "5.6.5",  "openid" : "${qxhd.openid}",  "os" : "iOS",  "artid" : ${artid},  "accountType" : "0",  "readmodel" : "1"}`,
 
      headers:JSON.parse(jkdck)
-
+        
     }
    $.post(nm,async(error, response, data) =>{
 
@@ -498,7 +498,7 @@ qxhd = JSON.parse(qxhd)
         $.log("get coin: "+result.profit)
     }else $.log(result.rtn_msg)
 
-
+          
         }catch(e) {
           $.logErr(e, response);
       } finally {
@@ -516,7 +516,7 @@ qlhd = JSON.parse(jkdhd)
      body: `jsondata={  "appid" : "xzwl",  "read_weal" : 0,  "paytype" : 2,  "securitykey" : "",  "channel" : "iOS",  "psign" : "92dea068b6c271161be05ed358b59932",  "appversioncode" : "565",  "time" : "1630332532",  "apptoken" : "xzwltoken070704",  "appversion" : "5.6.5",  "openid" : "${qlhd.openid}",  "os" : "iOS",  "artid" : ${artid},  "accountType" : "0",  "readmodel" : "1"}`,
 
      headers:JSON.parse(jkdck)
-
+        
     }
    $.post(nm,async(error, response, data) =>{
 //$.log(data)
@@ -528,7 +528,7 @@ qlhd = JSON.parse(jkdhd)
         $.log("get coin: "+result.profit)
     }else $.log(result.rtn_msg)
 
-
+          
         }catch(e) {
           $.logErr(e, response);
       } finally {
@@ -537,8 +537,8 @@ qlhd = JSON.parse(jkdhd)
     })
    })
   }
-
-
+  
+  
   async function xinshoutx(){
  return new Promise((resolve) => {
 
@@ -547,7 +547,7 @@ qlhd = JSON.parse(jkdhd)
 
 
      headers:JSON.parse(jkdck)
-
+        
     }
    $.post(nm,async(error, response, data) =>{
 
@@ -561,7 +561,7 @@ qlhd = JSON.parse(jkdhd)
         $.log(result.rtn_msg)
     }
 
-
+          
         }catch(e) {
           $.logErr(e, response);
       } finally {
@@ -570,8 +570,8 @@ qlhd = JSON.parse(jkdhd)
     })
    })
   }
-
-
+  
+  
     async function qlartlist(){
  return new Promise((resolve) => {
 
@@ -581,7 +581,7 @@ qlhd = JSON.parse(jkdhd)
      body: `jsondata={  "appid" : "xzwl",  "connectionType" : 100,  "optaction" : "up",  "pagesize" : 12,  "channel" : "iOS",  "psign" : "92dea068b6c271161be05ed358b59932",  "appversioncode" : "565",  "time" : "1630337840",  "apptoken" : "xzwltoken070704",  "cateid" : 53,  "openid" : "${qlhd.openid}",  "os" : "iOS",  "appversion" : "5.6.5",  "idfa" : "1E83F5F8-7908-45CD-907A-DE1E93F505D6",  "operatorType" : 3,  "page" : 3}`,
 
      headers:JSON.parse(jkdck)
-
+        
     }
    $.post(nm,async(error, response, data) =>{
 //$.log(data)
@@ -600,7 +600,7 @@ qlhd = JSON.parse(jkdhd)
 
     }else $.log(result.rtn_msg)
 
-
+          
         }catch(e) {
           $.logErr(e, response);
       } finally {
@@ -618,7 +618,7 @@ qlhd = JSON.parse(jkdhd)
      //body: `jsondata={  "appid" : "xzwl",  "connectionType" : 100,  "optaction" : "up",  "pagesize" : 12,  "channel" : "iOS",  "psign" : "92dea068b6c271161be05ed358b59932",  "appversioncode" : "565",  "time" : "1630337840",  "apptoken" : "xzwltoken070704",  "cateid" : 53,  "openid" : "${qlhd.openid}",  "os" : "iOS",  "appversion" : "5.6.5",  "idfa" : "1E83F5F8-7908-45CD-907A-DE1E93F505D6",  "operatorType" : 3,  "page" : 3}`,
 body: `jsondata={  "appid" : "xzwl",  "channel" : "iOS",  "psign" : "92dea068b6c271161be05ed358b59932",  "appversioncode" : "565",  "time" : "1630337593",  "apptoken" : "xzwltoken070704",  "requestid" : "1630337520179543",  "openid" : "${qlhd.openid}",  "os" : "iOS",  "artid" : ${artid},  "appversion" : "5.6.5",  "relate" : "1",  "scenetype" : ""}`,
      headers:JSON.parse(jkdck)
-
+        
     }
    $.post(nm,async(error, response, data) =>{
 //$.log(data)
@@ -630,7 +630,7 @@ body: `jsondata={  "appid" : "xzwl",  "channel" : "iOS",  "psign" : "92dea068b6c
 
     }else $.log(result.rtn_msg)
 
-
+          
         }catch(e) {
           $.logErr(e, response);
       } finally {
@@ -649,7 +649,7 @@ qlhd = JSON.parse(qlhd)
      body: `jsondata={  "appid" : "xzwl",  "connectionType" : 100,  "optaction" : "up",  "pagesize" : 12,  "channel" : "iOS",  "psign" : "92dea068b6c271161be05ed358b59932",  "appversioncode" : "565",  "time" : "1630337840",  "apptoken" : "xzwltoken070704",  "cateid" : 53,  "openid" : "${qlhd.openid}",  "os" : "iOS",  "appversion" : "5.6.5",  "idfa" : "1E83F5F8-7908-45CD-907A-DE1E93F505D6",  "operatorType" : 3,  "page" : 3}`,
 
      headers:JSON.parse(jkdck)
-
+        
     }
    $.post(nm,async(error, response, data) =>{
 //$.log(data)
@@ -668,7 +668,7 @@ qlhd = JSON.parse(qlhd)
 
     }else $.log(result.rtn_msg)
 
-
+          
         }catch(e) {
           $.logErr(e, response);
       } finally {
@@ -687,7 +687,7 @@ qlhd = JSON.parse(qlhd)
      //body: `jsondata={  "appid" : "xzwl",  "connectionType" : 100,  "optaction" : "up",  "pagesize" : 12,  "channel" : "iOS",  "psign" : "92dea068b6c271161be05ed358b59932",  "appversioncode" : "565",  "time" : "1630337840",  "apptoken" : "xzwltoken070704",  "cateid" : 53,  "openid" : "${qlhd.openid}",  "os" : "iOS",  "appversion" : "5.6.5",  "idfa" : "1E83F5F8-7908-45CD-907A-DE1E93F505D6",  "operatorType" : 3,  "page" : 3}`,
 body: `jsondata={  "appid" : "xzwl",  "channel" : "iOS",  "psign" : "92dea068b6c271161be05ed358b59932",  "appversioncode" : "565",  "time" : "1630337593",  "apptoken" : "xzwltoken070704",  "requestid" : "1630337520179543",  "openid" : "${qlhd.openid}",  "os" : "iOS",  "artid" : ${artid},  "appversion" : "5.6.5",  "relate" : "1",  "scenetype" : ""}`,
      headers:JSON.parse(jkdck)
-
+        
     }
    $.post(nm,async(error, response, data) =>{
 //$.log(data)
@@ -699,7 +699,7 @@ body: `jsondata={  "appid" : "xzwl",  "channel" : "iOS",  "psign" : "92dea068b6c
 
     }else $.log(result.rtn_msg)
 
-
+          
         }catch(e) {
           $.logErr(e, response);
       } finally {
@@ -721,13 +721,13 @@ qxhd = JSON.parse(qxhd)
      body: `jsondata={  "appid" : "xzwl",  "logout" : "0",  "channel" : "iOS",  "psign" : "92dea068b6c271161be05ed358b59932",  "appversioncode" : "565",  "time" : "1631921300",  "upopenid" : "",  "apptoken" : "xzwltoken070704",  "openid" : ${qxhd.openid},  "os" : "iOS",  "uniqueid" : "",  "appversion" : "5.6.5",  "umengid" : "",  "memid" : "",  "smid" : ""}`,
 
      headers:JSON.parse(jkdck)
-
+        
     }
    $.post(nm,async(error, response, data) =>{
 
     try{
 
-
+          
         }catch(e) {
           $.logErr(e, response);
       } finally {
@@ -744,13 +744,13 @@ qlhd = JSON.parse(jkdhd)
      body: `jsondata={  "appid" : "xzwl",  "logout" : "0",  "channel" : "iOS",  "psign" : "92dea068b6c271161be05ed358b59932",  "appversioncode" : "565",  "time" : "1631921300",  "upopenid" : "",  "apptoken" : "xzwltoken070704",  "openid" : ${qlhd.openid},  "os" : "iOS",  "uniqueid" : "",  "appversion" : "5.6.5",  "umengid" : "",  "memid" : "",  "smid" : ""}`,
 
      headers:JSON.parse(jkdck)
-
+        
     }
    $.post(nm,async(error, response, data) =>{
 
     try{
 
-
+          
         }catch(e) {
           $.logErr(e, response);
       } finally {
